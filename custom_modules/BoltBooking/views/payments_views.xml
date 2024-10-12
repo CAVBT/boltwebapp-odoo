@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Tree View for Booking -->
+    <record id="view_cavbt_payment_tree" model="ir.ui.view">
+        <field name="name">cavbt.payment.tree.view</field>
+        <field name="model">payments.payment</field>
+        <field name="arch" type="xml">
+            <tree string="Bookings">
+                <field name="reference" readonly="1"/>
+                <field name="transaction_id"/>
+                <field name="cardholder_name"/>
+                <field name="payment_status"/>
+                <field name="annotation"/>
+                <field name="contact"/>
+                <field name="subtotal"/>
+                <field name="total"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Booking -->
+    <record id="view_cavbt_payment_form" model="ir.ui.view">
+        <field name="name">cavbt.payment.form.view</field>
+        <field name="model">payments.payment</field>
+        <field name="arch" type="xml">
+            <form string="Booking">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="reference" readonly="1"/>
+                            <field name="transaction_id"/>
+                            <field name="cardholder_name"/>
+                            <field name="payment_status"/>
+                            <field name="payment_method"/>
+                        </group>
+                        <group>
+                            <field name="annotation"/>
+                            <field name="contact"/>
+                            <field name="subtotal"/>
+                            <field name="total"/>
+                        </group>
+                    </group>
+
+                    <!-- Chatter: placed correctly inside the sheet tag -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open Booking views -->
+    <record id="action_cavbt_payment" model="ir.actions.act_window">
+        <field name="name">Payments</field>
+        <field name="res_model">payments.payment</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a new Payment</p>
+        </field>
+    </record>
+</odoo>

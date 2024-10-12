@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_booking,access_bookings,model_booking_bookings,base.group_user,1,1,1,1
+access_destination,access_destination,model_destination_destination,base.group_user,1,1,1,1
+access_payment,access_payments,model_payments_payment,base.group_user,1,1,1,1

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="seq_cavbt_bookingst" model="ir.sequence">
+        <field name="name">Booking Locator</field>
+        <field name="code">cavbt.booking</field>
+        <field name="prefix">BT</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_cavbt_payment" model="ir.sequence">
+        <field name="name">Payment Locator</field>
+        <field name="code">cavbt.payment</field>
+        <field name="prefix">CBT</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

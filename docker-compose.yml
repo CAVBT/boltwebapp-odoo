@@ -1,0 +1,54 @@
+services:
+  web:
+    build: .
+    container_name: odoo
+    user: "1000:1000"
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+    volumes:
+      - ./addons:/mnt/extra-addons
+      - odoo-data:/var/lib/odoo
+      - odoo-sessions:/var/lib/odoo/sessions
+    networks:
+      - odoo-network
+
+  db:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - odoo-network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - web
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - /var/log/nginx:/var/log/nginx
+    networks:
+      - odoo-network
+
+volumes:
+  odoo-data:
+  db-data:
+  odoo-sessions:
+
+networks:
+  odoo-network:
+    driver: bridge

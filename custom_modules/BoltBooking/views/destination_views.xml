@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Tree View for Booking -->
+    <record id="view_cavbt_destination_tree" model="ir.ui.view">
+        <field name="name">cavbt.destination.tree.view</field>
+        <field name="model">destination.destination</field>
+        <field name="arch" type="xml">
+            <tree string="Destinations">
+                <field name="name"/>
+                <field name="dest_description"/>
+                <field name="dest_url"/>
+                <field name="price"/>
+                <field name="bookings"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Booking -->
+    <record id="view_cavbt_destination_form" model="ir.ui.view">
+        <field name="name">cavbt.destination.form.view</field>
+        <field name="model">destination.destination</field>
+        <field name="arch" type="xml">
+            <form string="Destinations">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="dest_description"/>
+                            <field name="dest_url"/>
+                        </group>
+                        <group>
+                            <field name="price"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Bookings" name="bookings">
+                            <field name="bookings" readonly="1"/>
+                        </page>
+                    </notebook>
+
+                    <!-- Chatter: placed correctly inside the sheet tag -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open Booking views -->
+    <record id="action_cavbt_destination" model="ir.actions.act_window">
+        <field name="name">Destinations</field>
+        <field name="res_model">destination.destination</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a new Destination</p>
+        </field>
+    </record>
+</odoo>

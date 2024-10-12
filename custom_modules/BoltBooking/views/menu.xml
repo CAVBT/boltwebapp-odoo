@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="booking_menu_root" name="Bolt MS"/>
+    <menuitem id="menu_booking_bookings"
+              parent="booking_menu_root"
+              name="Bookings"
+              action="action_cavbt_booking"
+    />
+    <menuitem id="menu_booking_payments"
+              parent="booking_menu_root"
+              name="Payments"
+              action="action_cavbt_payment"
+    />
+    <menuitem id="menu_booking_destinations"
+              parent="booking_menu_root"
+              name="Destinations"
+              action="action_cavbt_destination"
+    />
+</odoo>
