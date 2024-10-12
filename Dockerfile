@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
 # Fix permissions for Odoo session directory
 RUN mkdir -p /var/lib/odoo/sessions \
     && chown -R odoo:odoo /var/lib/odoo/sessions \
-    && chmod -R 755 /var/lib/odoo/sessions
+    && chmod -R 777 /var/lib/odoo/sessions
 
 # Set ownership for custom addons
 RUN chown -R odoo:odoo /mnt/extra-addons
