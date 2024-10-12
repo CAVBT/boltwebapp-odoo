@@ -30,19 +30,19 @@ services:
     networks:
       - odoo-network
 
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    ports:
-      - "80:80"
-      - "443:443"
-    depends_on:
-      - web
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - /var/log/nginx:/var/log/nginx
-    networks:
-      - odoo-network
+  # nginx:
+  #   image: nginx:latest
+  #   container_name: nginx
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   depends_on:
+  #     - web
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf
+  #     - /var/log/nginx:/var/log/nginx
+  #   networks:
+  #     - odoo-network
 
 volumes:
   odoo-data:
