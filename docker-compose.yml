@@ -2,7 +2,7 @@ services:
   web:
     build: .
     container_name: odoo
-    user: root  # Run as root initially to set permissions
+    user: root  # Temporarily run as root to fix permissions
     depends_on:
       - db
     ports:
@@ -11,12 +11,11 @@ services:
       - HOST=db
       - USER=odoo
       - PASSWORD=odoo
-   volumes:
-     - ./custom_modules:/mnt/extra-addons
-     - odoo-data:/var/lib/odoo
-     - odoo-sessions:/var/lib/odoo/sessions
-
-    command: bash -c "chown -R odoo:odoo /var/lib/odoo/sessions && chmod -R 700 /var/lib/odoo/sessions && /entrypoint.sh odoo"  # Set the correct permissions
+    volumes:
+      - ./custom_modules:/mnt/extra-addons  # Mount your custom modules directory
+      - odoo-data:/var/lib/odoo
+      - odoo-sessions:/var/lib/odoo/sessions
+    command: bash -c "chown -R odoo:odoo /var/lib/odoo/sessions && chmod -R 700 /var/lib/odoo/sessions && /entrypoint.sh odoo"  # Fix permissions
     networks:
       - odoo-network
 
