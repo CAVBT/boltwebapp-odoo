@@ -15,7 +15,7 @@ services:
       - ./addons:/mnt/extra-addons
       - odoo-data:/var/lib/odoo
       - odoo-sessions:/var/lib/odoo/sessions
-    command: bash -c "chown -R odoo:odoo /var/lib/odoo/sessions && chmod -R 700 /var/lib/odoo/sessions && /entrypoint.sh odoo"
+    command: bash -c "sudo chown -R odoo:odoo /var/lib/odoo/sessions && sudo chmod -R 700 /var/lib/odoo/sessions && /entrypoint.sh odoo"
 
     networks:
       - odoo-network
