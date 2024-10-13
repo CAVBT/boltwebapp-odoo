@@ -2,7 +2,7 @@ services:
   web:
     build: .
     container_name: odoo
-    user: "1000:1000"
+    user: root  # Run as root initially to set permissions
     depends_on:
       - db
     ports:
@@ -15,8 +15,7 @@ services:
       - ./addons:/mnt/extra-addons
       - odoo-data:/var/lib/odoo
       - odoo-sessions:/var/lib/odoo/sessions
-    command: bash -c "sudo chown -R odoo:odoo /var/lib/odoo/sessions && sudo chmod -R 700 /var/lib/odoo/sessions && /entrypoint.sh odoo"
-
+    command: bash -c "chown -R odoo:odoo /var/lib/odoo/sessions && chmod -R 700 /var/lib/odoo/sessions && /entrypoint.sh odoo"  # Set the correct permissions
     networks:
       - odoo-network
 
@@ -31,20 +30,6 @@ services:
       - db-data:/var/lib/postgresql/data
     networks:
       - odoo-network
-
-  # nginx:
-  #   image: nginx:latest
-  #   container_name: nginx
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   depends_on:
-  #     - web
-  #   volumes:
-  #     - ./nginx.conf:/etc/nginx/nginx.conf
-  #     - /var/log/nginx:/var/log/nginx
-  #   networks:
-  #     - odoo-network
 
 volumes:
   odoo-data:
