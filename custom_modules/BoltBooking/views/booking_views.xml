@@ -5,7 +5,7 @@
         <field name="name">cavbt.booking.tree.view</field>
         <field name="model">booking.bookings</field>
         <field name="arch" type="xml">
-            <tree string="Bookings">
+            <list string="Bookings">
                 <field name="reference" readonly="1"/>
                 <field name="contact"/>
                 <field name="employee"/>
@@ -15,7 +15,7 @@
                 <field name="booking_date"/>
                 <field name="booking_time"/>
                 <field name="booking_status"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -34,7 +34,6 @@
                         <h1>
                             <field name="reference" readonly="1"/>
                         </h1>
-
                     </div>
                     <group>
                         <group>
@@ -50,18 +49,13 @@
                             <field name="booking_status"/>
                         </group>
                     </group>
-
                     <notebook>
                         <page string="Destinations" name="destinations">
-                            <field name="destinations"/>
+                            <field name="destinations" widget="many2many_tags"/>
                         </page>
                     </notebook>
                 </sheet>
-
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" groups="base.group_user"/>
-                    <field name="message_ids"/>
-                </div>
+                <chatter/>
             </form>
         </field>
     </record>
@@ -70,7 +64,7 @@
     <record id="action_cavbt_booking" model="ir.actions.act_window">
         <field name="name">Bookings</field>
         <field name="res_model">booking.bookings</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">list,form,kanban</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Create a new booking</p>
         </field>

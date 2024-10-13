@@ -5,7 +5,7 @@
         <field name="name">cavbt.payment.tree.view</field>
         <field name="model">payments.payment</field>
         <field name="arch" type="xml">
-            <tree string="Bookings">
+            <list string="Bookings">
                 <field name="reference" readonly="1"/>
                 <field name="transaction_id"/>
                 <field name="cardholder_name"/>
@@ -14,7 +14,7 @@
                 <field name="contact"/>
                 <field name="subtotal"/>
                 <field name="total"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -41,11 +41,7 @@
                         </group>
                     </group>
 
-                    <!-- Chatter: placed correctly inside the sheet tag -->
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" groups="base.group_user"/>
-                        <field name="message_ids"/>
-                    </div>
+                    <chatter/>
                 </sheet>
             </form>
         </field>
@@ -55,7 +51,7 @@
     <record id="action_cavbt_payment" model="ir.actions.act_window">
         <field name="name">Payments</field>
         <field name="res_model">payments.payment</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">list,form,kanban</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Create a new Payment</p>
         </field>
