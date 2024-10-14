@@ -1,3 +1,5 @@
+version: '3'
+
 services:
   web:
     build: .
@@ -17,7 +19,7 @@ services:
       - ./custom_modules:/mnt/extra-addons  # Mount your custom modules directory
       - odoo-data:/var/lib/odoo
       - odoo-sessions:/var/lib/odoo/sessions
-    command: bash -c "chown -R odoo:odoo /var/lib/odoo/sessions && chmod -R 700 /var/lib/odoo/sessions && /entrypoint.sh odoo"  # Fix permissions
+    command: bash -c "chown -R odoo:odoo /var/lib/odoo/sessions && chmod -R 700 /var/lib/odoo/sessions && /entrypoint.sh odoo"
     networks:
       - odoo-network
 
@@ -30,6 +32,20 @@ services:
       - POSTGRES_PASSWORD=odoo
     volumes:
       - db-data:/var/lib/postgresql/data
+    networks:
+      - odoo-network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"   # HTTP
+      - "443:443" # HTTPS
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt:/etc/letsencrypt # To store SSL certificates
+    depends_on:
+      - web
     networks:
       - odoo-network
 
