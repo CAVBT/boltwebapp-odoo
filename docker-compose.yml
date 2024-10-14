@@ -2,6 +2,7 @@ services:
   web:
     image: odoo:latest
     container_name: odoo
+    user: root
     environment:
       - HOST=db
       - USER=odoo
