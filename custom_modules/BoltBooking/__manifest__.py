@@ -13,7 +13,6 @@
     'controllers': [
         'controllers/BookingController.py',
         'controllers/DestinationController.py',
-        'controllers/PaymentsController.py',
         'controllers/RouteLogger.py'
     ],
 }

@@ -11,6 +11,8 @@ services:
       - HOST=db
       - USER=odoo
       - PASSWORD=odoo
+      - AUTH_NET_API_LOGIN_ID=${AUTH_NET_API_LOGIN_ID}
+      - AUTH_NET_TRANSACTION_KEY=${AUTH_NET_TRANSACTION_KEY}
     volumes:
       - ./custom_modules:/mnt/extra-addons  # Mount your custom modules directory
       - odoo-data:/var/lib/odoo
