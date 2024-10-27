@@ -12,13 +12,13 @@ class BookingController(http.Controller):
 
         if request.httprequest.method == 'OPTIONS':
             headers = [
-                ('Access-Control-Allow-Origin', '*'),
+                ('Access-Control-Allow-Origin', 'https://dev.catchavibes.com'),
                 ('Access-Control-Allow-Methods', 'POST, OPTIONS'),
                 ('Access-Control-Allow-Headers', 'Content-Type'),
             ]
             return request.make_response('OK', headers=headers)
 
-        headers = [('Access-Control-Allow-Origin', '*')]
+        headers = [('Access-Control-Allow-Origin', 'https://dev.catchavibes.com')]
         # Extracting payment and booking details
         first_name = data.get('firstName')
         last_name = data.get('lastName')
