@@ -29,7 +29,7 @@ class DestinationController(http.Controller):
         # Create the response with CORS headers
         response = request.make_response(response_data)
         response.headers['Content-Type'] = 'application/json'
-        response.headers['Access-Control-Allow-Origin'] = '*'  # Allow requests from any origin
+        response.headers['Access-Control-Allow-Origin'] = 'https://dev.catchavibes.com'  # Allow requests from any origin
         response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'  # Allow these methods
         response.headers['Access-Control-Allow-Headers'] = 'Content-Type'  # Allow these headers
 
