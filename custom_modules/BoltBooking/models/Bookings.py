@@ -25,7 +25,7 @@ class Bookings(models.Model):
     ], string='Booking Status', default='pending')
     booking_time = fields.Char(string='Time')
     subtotal = fields.Float(string='Subtotal')
-    total =fields.Float(string='Total')
+    total = fields.Float(string='Total')
 
 
     @api.model_create_multi
