@@ -6,6 +6,16 @@ class DestinationController(http.Controller):
 
     @http.route('/api/get_destinations', auth='public', type='http', methods=['GET'], csrf=False)
     def get_destinations(self, **kwargs):
+
+        if request.httprequest.method == 'OPTIONS':
+            headers = [
+                ('Access-Control-Allow-Origin', 'https://dev.catchavibes.com'),
+                ('Access-Control-Allow-Methods', 'POST, OPTIONS'),
+                ('Access-Control-Allow-Headers', 'Content-Type'),
+            ]
+            return request.make_response('OK', headers=headers)
+
+        headers = [('Access-Control-Allow-Origin', 'https://dev.catchavibes.com')]
         # Fetch all destinations from the model
         destinations = request.env['destination.destination'].sudo().search([])
 
@@ -29,7 +39,7 @@ class DestinationController(http.Controller):
         # Create the response with CORS headers
         response = request.make_response(response_data)
         response.headers['Content-Type'] = 'application/json'
-        response.headers['Access-Control-Allow-Origin'] = '*'  # Allow requests from any origin
+        response.headers['Access-Control-Allow-Origin'] = 'https://dev.catchavibes.com'  # Allow requests from any origin
         response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'  # Allow these methods
         response.headers['Access-Control-Allow-Headers'] = 'Content-Type'  # Allow these headers
 
