@@ -56,7 +56,9 @@ services:
       - odoo-network
 
   frontend:
-    image: boltwebapp-frontend:latest  # Replace with the actual frontend image name
+    build:
+      context: ../boltwebapp-frontend # Specify the path to your frontend app
+      dockerfile: Dockerfile  # This is optional if your Dockerfile is named 'Dockerfile'
     container_name: boltwebapp-frontend
     environment:
       - NODE_ENV=production
